@@ -1,0 +1,7 @@
+{
+  "name": "BeFit",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
