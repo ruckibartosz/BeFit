@@ -1,0 +1,12 @@
+@import '../../theme/variables';
+
+.heading {
+  display: inline-block;
+  font-weight: $fw-semibold;
+
+  &HomeIcon {
+    position: relative;
+    top: 2.5px;
+    margin-right: $m-sm;
+  }
+}

@@ -1,0 +1,23 @@
+@import '@theme/variables';
+
+.pageSection {
+  margin-top: $m-lg;
+
+  &ShowMoreButton {
+    background: 0;
+  }
+
+  &SubTitle {
+    display: block;
+    margin-top: -10px;
+    font-size: $fs-sm;
+    color: $c-medium;
+  }
+
+  &Icon {
+    position: relative;
+    top: 4px;
+    margin-left: $m-md;
+    color: $c-medium;
+  }
+}

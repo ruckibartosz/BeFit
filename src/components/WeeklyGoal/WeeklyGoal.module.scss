@@ -1,0 +1,13 @@
+@import '@theme/variables';
+
+.weeklyGoal {
+  margin-top: $m-md;
+
+  &Icon {
+    color: $c-primary;
+  }
+
+  &Bolded {
+    font-weight: $fw-semibold;
+  }
+}

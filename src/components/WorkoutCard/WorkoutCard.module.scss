@@ -1,0 +1,30 @@
+@import '@theme/variables';
+
+.workoutCard {
+  width: auto;
+  height: auto;
+  margin: 0;
+
+  &Img {
+    display: flex;
+  }
+
+  &Heading {
+    position: relative;
+
+    &Button {
+      position: absolute;
+      top: -20px;
+      right: 15px;
+      width: 38px;
+      height: 38px;
+      color: $c-white;
+      background-color: $c-primary;
+      border-radius: 50%;
+    }
+
+    &Title {
+      font-size: $fs-sm;
+    }
+  }
+}

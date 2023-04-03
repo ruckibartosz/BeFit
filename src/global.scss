@@ -1,0 +1,30 @@
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;700&display=swap';
+@import './theme/colors';
+@import './theme/variables';
+@import './theme/mixins';
+@import './theme/typography';
+
+// @import "~swiper/scss/autoplay";
+// @import "~swiper/scss/keyboard";
+// @import "~swiper/scss/pagination";
+// @import "~swiper/scss/scrollbar";
+// @import "~swiper/scss/zoom";
+
+*,
+body,
+html,
+ion-icon,
+ion-list,
+ion-label {
+  font-family: $poppins !important;
+}
+
+ion-icon {
+  font-size: 24px;
+}
+
+ion-item,
+ion-list,
+ion-label {
+  width: 100%;
+}

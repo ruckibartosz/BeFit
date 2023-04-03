@@ -1,0 +1,13 @@
+@import '@theme/variables';
+
+.userWorkouts {
+  &List {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  &NotFoundHeading {
+    display: block;
+    color: $c-medium;
+  }
+}

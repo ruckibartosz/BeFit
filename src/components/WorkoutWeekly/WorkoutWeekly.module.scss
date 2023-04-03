@@ -1,0 +1,33 @@
+@import '@theme/variables';
+
+.workoutWeekly {
+  margin-top: $m-md;
+
+  &Day {
+    width: 45px;
+    height: 80px;
+    color: $c-black;
+    border: 1px solid $c-primary-tint;
+    border-radius: $br-md;
+    box-shadow: $bs-sm;
+    transition: all 0.2s ease-in-out;
+
+    &.active {
+      color: $c-white;
+      background-color: $c-primary;
+      transition: all 0.2s ease-in-out;
+    }
+
+    &Dot {
+      width: 8px;
+      height: 8px;
+      background-color: $c-primary;
+      border-radius: 50%;
+    }
+
+    &Date {
+      font-size: $fs-sm;
+      font-weight: $fw-semibold;
+    }
+  }
+}

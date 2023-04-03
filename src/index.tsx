@@ -4,11 +4,19 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+/* Providers */
+import { WorkoutStateProvider } from '@context/WorkoutStateContext';
+import { WorkoutActionProvider } from '@context/WorkoutActionContext';
+
 const container = document.getElementById('root');
 const root = createRoot(container!);
 root.render(
   <React.StrictMode>
-    <App />
+    <WorkoutStateProvider>
+      <WorkoutActionProvider>
+        <App />
+      </WorkoutActionProvider>
+    </WorkoutStateProvider>
   </React.StrictMode>
 );
 

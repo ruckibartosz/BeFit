@@ -1,0 +1,11 @@
+@import '@theme/variables';
+
+.statisticCard {
+  margin: 0;
+
+  &Heading {
+    display: flex;
+    justify-content: space-between;
+    font-size: $fs-base;
+  }
+}

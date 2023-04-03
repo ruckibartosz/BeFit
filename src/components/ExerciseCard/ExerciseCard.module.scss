@@ -1,0 +1,19 @@
+@import '@theme/variables';
+
+.exerciseCard {
+  margin: 0;
+
+  &Active {
+    border: 2px solid $c-primary;
+  }
+
+  &Img {
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+  }
+
+  &Title {
+    font-size: $fs-base;
+  }
+}

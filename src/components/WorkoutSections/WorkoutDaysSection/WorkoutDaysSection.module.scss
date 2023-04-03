@@ -1,0 +1,11 @@
+@import '@theme/variables';
+
+.workoutDaysSection {
+  &Content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 120px;
+    gap: 12px;
+    margin-top: $m-md;
+  }
+}

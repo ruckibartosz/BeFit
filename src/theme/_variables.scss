@@ -1,0 +1,131 @@
+/* Font style */
+
+$montserrat: 'Montserrat', 'sans-serif';
+$roboto: 'Roboto', 'sans-serif';
+$poppins: 'Poppins', 'sans-serif';
+
+/* Font sizes */
+
+$fs-xs: 0.75rem;
+$fs-sm: 0.875rem;
+$fs-base: 1rem;
+$fs-lg: 1.125rem;
+$fs-xl: 1.5rem;
+
+/* Heading font sizes */
+
+$h-1: 1.375rem;
+$h-2: 1, 375rem;
+$h-3: 1rem;
+$h-4: 1.125rem;
+$h-5: 0.75rem;
+$h-6: 0.75rem;
+
+/* Font weight */
+
+$fw-light: 300;
+$fw-normal: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+$fw-extrabold: 800;
+$fw-black: 900;
+
+/* Breakpoints */
+
+$breakpoints: (
+  sm: 375px,
+  lg: 390px,
+  xl: 412px,
+);
+
+/* Colors */
+
+/* Primary */
+$c-black: black;
+$c-white: white;
+$c-primary: #3880ff;
+$c-primary-shade: #3171e0;
+$c-primary-tint: #4c8dff;
+
+/* Secondary */
+$c-secondary: #3dc2ff;
+$c-secondary-shade: #36abe0;
+$c-secondary-tint: #50c8ff;
+
+/* Success */
+$c-success: #2dd36f;
+$c-success-rgb: 45, 211, 111;
+$c-success-contrast: #fff;
+$c-success-contrast-rgb: 255, 255, 255;
+$c-success-shade: #28ba62;
+$c-success-tint: #42d77d;
+
+/* Warning */
+$c-warning: #ffc409;
+$c-warning-rgb: 255, 196, 9;
+$c-warning-contrast: #000;
+$c-warning-contrast-rgb: 0, 0, 0;
+$c-warning-shade: #e0ac08;
+$c-warning-tint: #ffca22;
+
+/* Danger */
+$c-danger: #eb445a;
+$c-danger-rgb: 235, 68, 90;
+$c-danger-contrast: #fff;
+$c-danger-contrast-rgb: 255, 255, 255;
+$c-danger-shade: #cf3c4f;
+$c-danger-tint: #ed576b;
+
+/* Dark */
+$c-dark: #222428;
+$c-dark-rgb: 34, 36, 40;
+$c-dark-contrast: #fff;
+$c-dark-contrast-rgb: 255, 255, 255;
+$c-dark-shade: #1e2023;
+$c-dark-tint: #383a3e;
+
+/** Medium **/
+$c-medium: #92949c;
+$c-medium-rgb: 146, 148, 156;
+$c-medium-contrast: #fff;
+$c-medium-contrast-rgb: 255, 255, 255;
+$c-medium-shade: #808289;
+$c-medium-tint: #9d9fa6;
+
+/** Light **/
+$c-light: #f4f5f8;
+$c-light-rgb: 244, 245, 248;
+$c-light-contrast: #000;
+$c-light-contrast-rgb: 0, 0, 0;
+$c-light-shade: #d7d8da;
+$c-light-tint: #f5f6f9;
+
+/** Padding **/
+$p-xs: 4px;
+$p-sm: 10px;
+$p-md: 14px;
+$p-lg: 18px;
+$p-xl: 24px;
+$p-xl2: 34px;
+$p-xl3: 62px;
+
+/** Margin **/
+$m-xs: 4px;
+$m-sm: 10px;
+$m-md: 14px;
+$m-lg: 18px;
+$m-xl: 24px;
+$m-xl2: 34px;
+$m-xl3: 62px;
+
+/** Shadow **/
+$bs-sm: rgb(60 64 67 / 30%) 0 1px 2px 0, rgb(60 64 67 / 15%) 0 2px 6px 2px;
+$bs-sm2: rgb(99 99 99 / 20%) 0 2px 8px 0;
+$bs-md: rgb(0 0 0 / 24%) 0 3px 8px;
+
+/** Border radius **/
+$br-sm: 8px;
+$br-md: 16px;
+$br-lg: 32px;
+$br-xl: 64px;
