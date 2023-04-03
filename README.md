@@ -33,6 +33,7 @@
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
+- [Screenshots](#screenshots)
 - [Usage](#usage)
 - [Contributing](#contributing)
   - [Creating A Pull Request](#creating-a-pull-request)
@@ -70,12 +71,19 @@ Whilst I was the main developer of this project, this project couldn't of even s
 * [Prettier](https://prettier.io/)
 * [Stylelint](https://stylelint.io/)
 * [Husky](https://github.com/typicode/husky)
+
 ## Getting Started
-
-
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
+
+### Screenshots
+
+<p align="center"><img src="https://i.imgur.com/tFbz2Xs.png" /></p>
+<p align="center"><img src="https://i.imgur.com/cOuG4cz.png" /> </p>
+<p align="center"><img src="https://i.imgur.com/h2NtdbL.png" /> </p>
+<p align="center><img src="https://i.imgur.com/ykS1Cyg.png" /></p> 
+<p align="center"><img src="https://i.imgur.com/CyWmXlI.png" /></p>
 
 ### Prerequisites
 
