@@ -77,14 +77,6 @@ Whilst I was the main developer of this project, this project couldn't of even s
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
-### Screenshots
-
-<p align="center"><img src="https://i.imgur.com/tFbz2Xs.png" /></p>
-<p align="center"><img src="https://i.imgur.com/cOuG4cz.png" /> </p>
-<p align="center"><img src="https://i.imgur.com/h2NtdbL.png" /> </p>
-<p align="center><img src="https://i.imgur.com/ykS1Cyg.png" /></p> 
-<p align="center"><img src="https://i.imgur.com/CyWmXlI.png" /></p>
-
 ### Prerequisites
 
 This program has no pre-requisites
@@ -108,6 +100,14 @@ npm install
 ```sh
 npm start
 ```
+## Screenshots
+
+<p align="center"><img src="https://i.imgur.com/tFbz2Xs.png" /></p>
+<p align="center"><img src="https://i.imgur.com/cOuG4cz.png" /> </p>
+<p align="center"><img src="https://i.imgur.com/h2NtdbL.png" /> </p>
+<p align="center><img src="https://i.imgur.com/ykS1Cyg.png" /></p> 
+<p align="center"><img src="https://i.imgur.com/CyWmXlI.png" /></p>
+
 ## Usage
 
 Coming Soon!
