@@ -1,17 +1,17 @@
 import React from 'react';
-import { IonButton, useIonRouter } from '@ionic/react';
+import { IonButton, IonSpinner, useIonRouter } from '@ionic/react';
 
 import { Page } from '@components/Page';
 import WorkoutCard from '@components/WorkoutCard';
 import Flex from '@components/Flex';
 
 import style from './UserWorkoutListSection.module.scss';
-import { useWorkoutAction } from '@hooks/useWorkoutAction';
 import { useWorkoutState } from '@hooks/useWorkoutState';
+import { useWorkoutAction } from '@hooks/useWorkoutAction';
 
 const UserWorkoutListSection: React.FC = () => {
   const router = useIonRouter();
-  const [, workouts] = useWorkoutState();
+  const { workouts } = useWorkoutState();
   const { loadCurrWorkout } = useWorkoutAction();
 
   const navigateToWorkoutDetails = (id: string) => {
@@ -51,7 +51,7 @@ const UserWorkoutListSection: React.FC = () => {
   };
 
   return (
-    <Page.Section title='Your workouts'>
+    <Page.Section title={`Your workouts (${workouts.length})`}>
       {workouts.length ? renderWorkoutCards() : renderNotFoundWorkouts()}
     </Page.Section>
   );

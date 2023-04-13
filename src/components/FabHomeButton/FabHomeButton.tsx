@@ -2,12 +2,13 @@ import React from 'react';
 import { IonFab, IonFabButton, IonIcon, useIonRouter } from '@ionic/react';
 import { add } from 'ionicons/icons';
 import { useWorkoutAction } from '@hooks/useWorkoutAction';
-const FabButton: React.FC = () => {
-  const { resetCurrWorkout } = useWorkoutAction();
+
+const FabHomeButton: React.FC = () => {
   const router = useIonRouter();
+  const { resetState } = useWorkoutAction();
 
   const handleOnFabClick = () => {
-    resetCurrWorkout();
+    resetState();
     router.push('/workout/create');
   };
 
@@ -25,4 +26,4 @@ const FabButton: React.FC = () => {
   );
 };
 
-export default FabButton;
+export default FabHomeButton;

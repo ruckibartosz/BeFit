@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import { DayType, WorkoutType } from '../types/workoutData.type';
 import { WorkoutActionType } from '../types/workoutAction.type';
@@ -27,14 +28,30 @@ export const useWorkoutReducer = (): [
         return { ...state, workouts, initialized };
       }
 
-      case 'MOD_CURR_WORKOUT': {
-        const { workout } = action.payload;
-        return { ...state, currWorkout: workout };
+      case 'MOD_CURR_WORKOUT_PROPERTY': {
+        const { property, value } = action.payload;
+        return {
+          ...state,
+          currWorkout: { ...state.currWorkout, [property]: value },
+        };
       }
 
-      case 'MOD_CURR_DAY': {
-        const { day } = action.payload;
-        return { ...state, currDay: day };
+      case 'LOAD_CURR_WORKOUT': {
+        const { currWorkout } = action.payload;
+        return {
+          ...state,
+          currWorkout,
+        };
+      }
+
+      case 'MOD_CURR_DAY_PROPERTY': {
+        const { property, value } = action.payload;
+        return { ...state, currDay: { ...state.currDay, [property]: value } };
+      }
+
+      case 'LOAD_CURR_DAY': {
+        const { currDay } = action.payload;
+        return { ...state, currDay };
       }
 
       case 'MOD_WORKOUTS': {
@@ -42,21 +59,20 @@ export const useWorkoutReducer = (): [
         return { ...state, workouts, initialized: true };
       }
 
-      case 'MOD_GENERAL': {
-        const { name, note } = action.payload;
-        return { ...state, currWorkout: { ...state.currWorkout, name, note } };
-      }
-
-      case 'MOD_DAYS': {
-        const { days } = action.payload;
+      case 'RESET_CURR_WORKOUT': {
         return {
           ...state,
-          currWorkout: {
-            ...state.currWorkout,
-            days,
-          },
+          currWorkout: { id: uuidv4(), name: '', note: '', days: [] },
         };
       }
+
+      case 'RESET_CURR_DAY': {
+        return {
+          ...state,
+          currDay: { id: uuidv4(), name: '', exercise: [] },
+        };
+      }
+
       default:
         return state;
     }
@@ -64,13 +80,13 @@ export const useWorkoutReducer = (): [
 
   const [state, dispatch] = useReducer(workoutReducer, {
     currWorkout: {
-      id: '',
+      id: uuidv4(),
       name: '',
       note: '',
       days: [],
     },
     currDay: {
-      id: '',
+      id: uuidv4(),
       name: '',
       exercise: [],
     },

@@ -1,46 +1,62 @@
+/* eslint-disable */
 import React from 'react';
-import { IonButton } from '@ionic/react';
+import { IonButton, useIonRouter } from '@ionic/react';
+import { useParams } from 'react-router';
 
 import { Page } from '@components/Page';
-import useWorkoutViewState from '@hooks/useWorkoutViewState';
-import useWorkoutViewAction from '@hooks/useWorkoutViewAction';
+import { useWorkoutAction } from '@hooks/useWorkoutAction';
+import { useWorkoutState } from '@hooks/useWorkoutState';
 import WorkoutFormSection from '@components/WorkoutSections/WorkoutFormSection';
 import WorkoutDaysSection from '@components/WorkoutSections/WorkoutDaysSection';
-import { useWorkoutState } from '@hooks/useWorkoutState';
+import FabWorkoutButton from '@components/FabWorkoutButton';
 
 const CreateWorkout: React.FC = () => {
-  const { generalName, generalNote } = useWorkoutViewState();
-  const [{ days }] = useWorkoutState();
-  const {
-    handleOnGeneralNameChange,
-    handleOnGeneralNoteChange,
-    handleCreateNewDay,
-    handleLoadCurrentDay,
-    handleUpdateGeneralState,
-  } = useWorkoutViewAction();
+  const { currWorkout } = useWorkoutState();
+  const { workoutParam } = useParams<{ workoutParam: string }>();
+  const { name, note, days } = currWorkout;
+  const { updateCurrWorkoutProperty, addCurrWorkout, updateWorkout, loadCurrDay } = useWorkoutAction();
+  const router = useIonRouter();
+  const isInCreateMode = workoutParam === 'create' ? true : false;
+
+  const handleWorkoutFormChange = (ev: Event) => {
+    const { name, value } = ev.target as HTMLInputElement;
+    updateCurrWorkoutProperty(name, value);
+  };
+
+  const handleOnCreateDayClick = () => router.push('/day-details/create');
+
+  const handleOnSaveWorkoutClick = () => {
+    if (workoutParam === 'create') {
+      addCurrWorkout();
+    } else {
+      updateWorkout(workoutParam);
+    }
+    router.goBack();
+  };
+
+  const handleOnDayCardClick = (id: string) => {
+    loadCurrDay(id);
+    router.push(`/day-details/${id}`);
+  }
 
   return (
     <Page.Container>
       <Page.Heading title='Workout' showBackButton={true}>
-        <IonButton
-          onClick={() => handleUpdateGeneralState(generalName, generalNote)}
-          style={{ width: '90px' }}
-          fill='outline'
-        >
+        <IonButton onClick={handleOnSaveWorkoutClick} fill='outline'>
           Save
         </IonButton>
       </Page.Heading>
       <WorkoutFormSection
-        generalNameVal={generalName}
-        generalNoteVal={generalNote}
-        generalNameSetter={handleOnGeneralNameChange}
-        generalNoteSetter={handleOnGeneralNoteChange}
+        generalName={name}
+        generalNote={note}
+        onFormChange={handleWorkoutFormChange}
       />
       <WorkoutDaysSection
         days={days}
-        handleOnDayCardClick={handleLoadCurrentDay}
-        handleCreateNewDayButtonClick={handleCreateNewDay}
+        onCreateDayClick={handleOnCreateDayClick}
+        onDayCardClick={handleOnDayCardClick}
       />
+      {!isInCreateMode && <FabWorkoutButton />}
     </Page.Container>
   );
 };

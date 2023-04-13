@@ -1,22 +1,28 @@
-import { DayType, WorkoutType } from '../types/workoutData.type';
 import React, { useCallback } from 'react';
-import useLocalStorage from '@hooks/useLocalStorage';
-import { WorkoutActionType } from '../types/workoutAction.type';
+
+import { DayType, WorkoutType } from '../types/workoutData.type';
+import { ExerciseType } from '../types/exercise.type';
 import { useWorkoutState } from '@hooks/useWorkoutState';
+import useLocalStorage from '@hooks/useLocalStorage';
 
 type WorkoutActionContextType = {
-  dispatch: React.Dispatch<WorkoutActionType>;
-  loadWorkouts: () => void;
-  loadCurrWorkout: (workoutId: string) => void;
-  updateCurrWorkoutGeneralState: (name: string, note: string) => void;
-  updateCurrDayState: (day: DayType) => void;
-  updateCurrWorkoutDayState: (day: DayType, dayId: string) => void;
-  addCurrWorkoutDayState: (day: DayType) => void;
-  addCurrentWorkout: () => void;
-  deleteCurrWorkoutDayState: (dayId: string) => void;
-  deleteWorkoutState: (workoutId: string) => void;
-  getDayByIndex: (dayId: string) => DayType | undefined;
-  resetCurrWorkout: () => void;
+  resetState: () => void;
+  updateWorkout: (id: string) => void;
+  updateDay: (id: string) => void;
+  deleteDay: (id: string) => void;
+  deleteWorkout: (id: string) => void;
+  addCurrWorkout: () => void;
+  addCurrDay: () => void;
+  loadCurrWorkout: (id: string) => void;
+  loadCurrDay: (id: string) => void;
+  updateCurrWorkoutProperty: (
+    property: string,
+    value: DayType[] | string
+  ) => void;
+  updateCurrDayProperty: (
+    property: string,
+    value: ExerciseType[] | string
+  ) => void;
 };
 
 type WorkoutActionProviderProps = {
@@ -30,143 +36,175 @@ export const WorkoutActionContext = React.createContext<
 export const WorkoutActionProvider: React.FC<WorkoutActionProviderProps> = ({
   children,
 }) => {
-  const [currWorkout, workouts, dispatch] = useWorkoutState();
+  const { currWorkout, workouts, dispatch, currDay } = useWorkoutState();
   const [, setLocalStorageValue] =
     useLocalStorage<Array<WorkoutType>>('workouts');
 
-  const updateCurrWorkoutGeneralState = (name: string, note: string) =>
-    dispatch({ type: 'MOD_GENERAL', payload: { name, note } });
+  const resetCurrWorkoutState = useCallback(() => {
+    dispatch({ type: 'RESET_CURR_WORKOUT' });
+  }, [dispatch]);
 
-  const updateCurrWorkoutDayState = (day: DayType, dayId: string) => {
-    const { days: stateDays } = currWorkout;
+  const resetCurrDayState = useCallback(() => {
+    dispatch({ type: 'RESET_CURR_DAY' });
+  }, [dispatch]);
 
-    const indexOfDay = stateDays.findIndex((day: DayType) => day.id === dayId);
-    if (indexOfDay === -1 && dayId !== '') return console.error('wrong id');
+  const resetState = useCallback(() => {
+    resetCurrWorkoutState();
+    resetCurrDayState();
+  }, []);
 
-    stateDays[indexOfDay] = day;
-    dispatch({ type: 'MOD_DAYS', payload: { days: stateDays } });
-  };
+  const updateWorkout = useCallback(
+    (id: string) => {
+      const indexOfWorkout = workouts.findIndex((workout) => workout.id === id);
+      if (indexOfWorkout !== -1) {
+        const updatedWorkouts = workouts;
+        updatedWorkouts[indexOfWorkout] = currWorkout;
+        dispatch({
+          type: 'MOD_WORKOUTS',
+          payload: { workouts: updatedWorkouts },
+        });
+        setLocalStorageValue(updatedWorkouts);
+      }
+    },
+    [currWorkout, dispatch, setLocalStorageValue, workouts]
+  );
 
-  const updateCurrDayState = useCallback(
-    (day: DayType) => {
-      dispatch({ type: 'MOD_CURR_DAY', payload: { day } });
+  const updateCurrWorkoutProperty = useCallback(
+    (property: string, value: DayType[] | string) => {
+      dispatch({
+        type: 'MOD_CURR_WORKOUT_PROPERTY',
+        payload: { property, value },
+      });
     },
     [dispatch]
   );
 
-  const addCurrWorkoutDayState = (day: DayType) => {
-    const { days } = currWorkout;
-    const stateDays = [...days, day];
-    dispatch({ type: 'MOD_DAYS', payload: { days: stateDays } });
-  };
-
-  const loadWorkouts = useCallback(() => {
-    if (workouts?.length) {
-      dispatch({ type: 'MOD_WORKOUTS', payload: { workouts } });
-    }
-  }, [dispatch, workouts]);
-
-  const loadCurrWorkout = (workoutId: string) => {
-    const workout = workouts?.find((workout) => workout.id === workoutId);
-    if (workout) {
-      dispatch({
-        type: 'MOD_CURR_WORKOUT',
-        payload: { workout },
-      });
-    }
-  };
-
-  const addCurrentWorkout = () => {
-    const arr = [...workouts, currWorkout];
-
-    setLocalStorageValue(arr);
-
-    dispatch({ type: 'MOD_WORKOUTS', payload: { workouts: arr } });
-  };
-
-  const deleteCurrWorkoutDayState = useCallback(
-    (dayId: string) => {
-      const { days: stateDays } = currWorkout;
-
-      const indexOfDay = stateDays.findIndex(
-        (day: DayType) => day.id === dayId
-      );
-      if (indexOfDay === -1) return console.error('wrong id');
-
-      const arr = stateDays.filter((day: DayType) => day.id != dayId);
-
-      dispatch({ type: 'MOD_DAYS', payload: { days: arr } });
+  const updateDay = useCallback(
+    (id: string) => {
+      const { days } = currWorkout;
+      const indexOfDay = days.findIndex((day) => day.id === id);
+      if (indexOfDay !== -1) {
+        const updatedDays = days;
+        updatedDays[indexOfDay] = currDay;
+        dispatch({
+          type: 'MOD_CURR_WORKOUT_PROPERTY',
+          payload: { property: 'days', value: updatedDays },
+        });
+        resetCurrDayState();
+      }
     },
-    [dispatch, currWorkout]
+    [currDay, currWorkout, dispatch, resetCurrDayState]
   );
 
-  const deleteWorkoutState = useCallback(
-    (workoutId: string) => {
-      const indexOfWorkout = workouts?.findIndex(
-        (workout: WorkoutType) => workout.id === workoutId
-      );
+  const updateCurrDayProperty = useCallback(
+    (property: string, value: ExerciseType[] | string) => {
+      dispatch({ type: 'MOD_CURR_DAY_PROPERTY', payload: { property, value } });
+    },
+    [dispatch]
+  );
 
-      if (indexOfWorkout === -1) return console.error('wrong id');
+  const deleteDay = useCallback(
+    (id: string) => {
+      const { days } = currWorkout;
+      const updatedDaysArray = days.filter((day: DayType) => day.id != id);
 
-      const arr = workouts?.filter(
-        (workout: WorkoutType) => workout.id != workoutId
+      dispatch({
+        type: 'MOD_CURR_WORKOUT_PROPERTY',
+        payload: { property: 'days', value: updatedDaysArray },
+      });
+    },
+    [currWorkout, dispatch]
+  );
+
+  const deleteWorkout = useCallback(
+    (id: string) => {
+      const updatedWorkoutsArray = workouts.filter(
+        (workout: WorkoutType) => workout.id != id
       );
-      if (arr === undefined) {
-        console.error('could not update values');
-        return false;
+      dispatch({
+        type: 'MOD_WORKOUTS',
+        payload: { workouts: updatedWorkoutsArray },
+      });
+      setLocalStorageValue(updatedWorkoutsArray);
+    },
+    [dispatch, setLocalStorageValue, workouts]
+  );
+
+  const addCurrWorkout = useCallback(() => {
+    const updatedWorkoutsArray = [...workouts, currWorkout];
+    dispatch({
+      type: 'MOD_WORKOUTS',
+      payload: { workouts: updatedWorkoutsArray },
+    });
+    resetCurrWorkoutState();
+    setLocalStorageValue(updatedWorkoutsArray);
+  }, [
+    currWorkout,
+    dispatch,
+    resetCurrWorkoutState,
+    setLocalStorageValue,
+    workouts,
+  ]);
+
+  const addCurrDay = useCallback(() => {
+    const { days } = currWorkout;
+    const updatedDaysArray = [...days, currDay];
+
+    dispatch({
+      type: 'MOD_CURR_WORKOUT_PROPERTY',
+      payload: { property: 'days', value: updatedDaysArray },
+    });
+
+    resetCurrDayState();
+  }, [currDay, currWorkout, dispatch, resetCurrDayState]);
+
+  const loadCurrWorkout = useCallback(
+    (id: string) => {
+      const workout = workouts.find((workout) => workout.id === id);
+      if (workout) {
+        dispatch({
+          type: 'LOAD_CURR_WORKOUT',
+          payload: { currWorkout: workout },
+        });
+      } else {
+        throw new Error('Wrong workout id');
       }
-
-      dispatch({ type: 'MOD_WORKOUTS', payload: { workouts: arr } });
     },
     [dispatch, workouts]
   );
 
-  const getDayByIndex = useCallback(
-    (dayId: string): DayType | undefined => {
+  const loadCurrDay = useCallback(
+    (id: string) => {
       const { days } = currWorkout;
-      const day: DayType | undefined = days.find(
-        (day: DayType) => day.id === dayId
-      );
-
+      const day = days.find((day) => day.id === id);
       if (day) {
-        return day;
+        dispatch({
+          type: 'LOAD_CURR_DAY',
+          payload: { currDay: day },
+        });
+      } else {
+        throw new Error('Wrong day id');
       }
-
-      return undefined;
     },
-    [currWorkout]
+    [currWorkout, dispatch]
   );
 
-  const resetCurrWorkout = useCallback(() => {
-    const defaultCurrWorkout: WorkoutType = {
-      id: '',
-      name: '',
-      note: '',
-      days: [],
-    };
-    dispatch({
-      type: 'MOD_CURR_WORKOUT',
-      payload: { workout: defaultCurrWorkout },
-    });
-  }, [dispatch]);
-
-  const actions = {
-    dispatch,
-    loadWorkouts,
+  const actionsContext = {
+    updateWorkout,
+    updateDay,
+    updateCurrWorkoutProperty,
+    updateCurrDayProperty,
+    deleteDay,
+    deleteWorkout,
+    addCurrWorkout,
+    addCurrDay,
     loadCurrWorkout,
-    updateCurrWorkoutGeneralState,
-    updateCurrWorkoutDayState,
-    addCurrWorkoutDayState,
-    addCurrentWorkout,
-    deleteCurrWorkoutDayState,
-    deleteWorkoutState,
-    getDayByIndex,
-    resetCurrWorkout,
-    updateCurrDayState,
+    loadCurrDay,
+    resetState,
   };
 
   return (
-    <WorkoutActionContext.Provider value={actions}>
+    <WorkoutActionContext.Provider value={actionsContext}>
       {children}
     </WorkoutActionContext.Provider>
   );

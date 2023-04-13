@@ -4,13 +4,13 @@ import { IonInput } from '@ionic/react';
 import { Page } from '@components/Page';
 
 type DayDetailsFormSectionProps = {
-  dayNameVal: string;
-  dayNameSetter: (ev: Event) => void;
+  nameVal: string;
+  onDayDetailsFormChange: (ev: Event) => void;
 };
 
 const DayDetailsFormSection: React.FC<DayDetailsFormSectionProps> = ({
-  dayNameVal,
-  dayNameSetter,
+  nameVal,
+  onDayDetailsFormChange,
 }) => {
   return (
     <Page.Section
@@ -18,8 +18,9 @@ const DayDetailsFormSection: React.FC<DayDetailsFormSectionProps> = ({
       subTitle='Day general information'
     >
       <IonInput
-        onIonChange={dayNameSetter}
-        value={dayNameVal}
+        name='name'
+        onIonChange={onDayDetailsFormChange}
+        value={nameVal}
         placeholder='Enter name'
       />
     </Page.Section>

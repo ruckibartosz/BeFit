@@ -7,6 +7,8 @@ import reportWebVitals from './reportWebVitals';
 /* Providers */
 import { WorkoutStateProvider } from '@context/WorkoutStateContext';
 import { WorkoutActionProvider } from '@context/WorkoutActionContext';
+import { SettingsStateProvider } from '@context/SettingsStateContext';
+import { SettingsActionProvider } from '@context/SettingsActionContext';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
@@ -14,7 +16,11 @@ root.render(
   <React.StrictMode>
     <WorkoutStateProvider>
       <WorkoutActionProvider>
-        <App />
+        <SettingsStateProvider>
+          <SettingsActionProvider>
+            <App />
+          </SettingsActionProvider>
+        </SettingsStateProvider>
       </WorkoutActionProvider>
     </WorkoutStateProvider>
   </React.StrictMode>

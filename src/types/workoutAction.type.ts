@@ -11,36 +11,40 @@ export type WorkoutModWorkoutsActionType = {
   payload: { workouts: Array<WorkoutType> };
 };
 
-export type WorkoutModCurrentWorkoutActionType = {
-  type: 'MOD_CURR_WORKOUT';
-  payload: { workout: WorkoutType };
+export type WorkoutModCurrentWorkoutPropertyActionType = {
+  type: 'MOD_CURR_WORKOUT_PROPERTY';
+  payload: { property: string; value: string | Array<DayType> };
 };
 
-export type WorkoutModCurrentDayActionType = {
-  type: 'MOD_CURR_DAY';
-  payload: { day: DayType };
+export type WorkoutModCurrentDayPropertyActionType = {
+  type: 'MOD_CURR_DAY_PROPERTY';
+  payload: { property: string; value: string | Array<ExerciseType> };
 };
 
-export type WorkoutModGeneralActionType = {
-  type: 'MOD_GENERAL';
-  payload: { name: string; note: string };
+export type WorkoutResetCurrentWorkoutActionType = {
+  type: 'RESET_CURR_WORKOUT';
 };
 
-export type WorkoutModDaysActionType = {
-  type: 'MOD_DAYS';
-  payload: { days: Array<DayType> };
+export type WorkoutResetCurrentDayActionType = {
+  type: 'RESET_CURR_DAY';
 };
 
-export type WorkoutModExerciseActionType = {
-  type: 'MOD_EXERCISE';
-  payload: { exercise: Array<ExerciseType> };
+export type WorkoutLoadCurrentDayActionType = {
+  type: 'LOAD_CURR_DAY';
+  payload: { currDay: DayType };
+};
+
+export type WorkoutLoadCurrentWorkoutActionType = {
+  type: 'LOAD_CURR_WORKOUT';
+  payload: { currWorkout: WorkoutType };
 };
 
 export type WorkoutActionType =
-  | WorkoutModCurrentDayActionType
+  | WorkoutModCurrentDayPropertyActionType
   | WorkoutFetchWorkoutsActionType
   | WorkoutModWorkoutsActionType
-  | WorkoutModCurrentWorkoutActionType
-  | WorkoutModDaysActionType
-  | WorkoutModExerciseActionType
-  | WorkoutModGeneralActionType;
+  | WorkoutModCurrentWorkoutPropertyActionType
+  | WorkoutLoadCurrentWorkoutActionType
+  | WorkoutLoadCurrentDayActionType
+  | WorkoutResetCurrentWorkoutActionType
+  | WorkoutResetCurrentDayActionType;

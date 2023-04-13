@@ -8,6 +8,7 @@ type WorkoutStateContextType = {
   currDay: DayType;
   workouts: Array<WorkoutType>;
   dispatch: React.Dispatch<WorkoutActionType>;
+  initialized: boolean;
 };
 
 type WorkoutStateProviderProps = {
@@ -21,10 +22,11 @@ export const WorkoutStateContext = React.createContext<
 export const WorkoutStateProvider: React.FC<WorkoutStateProviderProps> = ({
   children,
 }) => {
-  const [{ currWorkout, workouts, currDay }, dispatch] = useWorkoutReducer();
+  const [{ currWorkout, workouts, currDay, initialized }, dispatch] =
+    useWorkoutReducer();
   return (
     <WorkoutStateContext.Provider
-      value={{ currWorkout, workouts, dispatch, currDay }}
+      value={{ currWorkout, workouts, dispatch, currDay, initialized }}
     >
       {children}
     </WorkoutStateContext.Provider>

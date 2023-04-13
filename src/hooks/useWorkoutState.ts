@@ -11,6 +11,7 @@ export const useWorkoutState = () => {
   const workouts = workoutStateCtx.workouts;
   const dispatch = workoutStateCtx.dispatch;
   const currDay = workoutStateCtx.currDay;
+  const initialized = workoutStateCtx.initialized;
 
-  return [currWorkout, workouts, dispatch, currDay] as const;
+  return { currWorkout, workouts, dispatch, currDay, initialized } as const;
 };

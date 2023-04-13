@@ -47,10 +47,6 @@ import DayDetails from '@views/day-details';
 import Workout from '@views/workout';
 import Home from '@views/home';
 
-/* Contexts */
-import { WorkoutViewStateProvider } from '@context/WorkoutViewStateContext';
-import { WorkoutViewActionProvider } from '@context/WorkoutViewActionContext';
-
 setupIonicReact();
 
 const App: React.FC = () => (
@@ -82,18 +78,10 @@ const App: React.FC = () => (
           <Route path='/statistics' component={Statistics} />
 
           <Route path='/workout/:workoutParam'>
-            <WorkoutViewStateProvider>
-              <WorkoutViewActionProvider>
-                <Workout />
-              </WorkoutViewActionProvider>
-            </WorkoutViewStateProvider>
+            <Workout />
           </Route>
           <Route path='/day-details/:dayParam'>
-            <WorkoutViewStateProvider>
-              <WorkoutViewActionProvider>
-                <DayDetails />
-              </WorkoutViewActionProvider>
-            </WorkoutViewStateProvider>
+            <DayDetails />
           </Route>
           <Route path='/history-details'>
             <HistoryDetails />

@@ -1,48 +1,46 @@
 import React from 'react';
-import { IonButton } from '@ionic/react';
+import { IonButton, useIonRouter } from '@ionic/react';
+import { useParams } from 'react-router';
 
 import { Page } from '@components/Page';
+import { useWorkoutState } from '@hooks/useWorkoutState';
+import { useWorkoutAction } from '@hooks/useWorkoutAction';
 import DayDetailsFormSection from '@components/DayDetailsSections/DayDetailsFormSection';
 import DayDetailsExercisesSections from '@components/DayDetailsSections/DayDetailsExercisesSection';
-import useWorkoutViewState from '@hooks/useWorkoutViewState';
-import useWorkoutViewAction from '@hooks/useWorkoutViewAction';
 
 const DayDetails: React.FC = () => {
-  const { dayName, isModalOpen, exercises } = useWorkoutViewState();
-  const {
-    handleOnDayNameChange,
-    handleOnCloseModalButtonClick,
-    handleOnAddExerciseButtonClick,
-    handleOnExercisesChange,
-    handleOnSaveDayClick,
-  } = useWorkoutViewAction();
+  const { currDay } = useWorkoutState();
+  const { updateCurrDayProperty, addCurrDay, updateDay } = useWorkoutAction();
+  const { name } = currDay;
+  const { dayParam } = useParams<{ dayParam: string }>();
+  const router = useIonRouter();
+
+  const handleOnDayDetailsFormChange = (ev: Event) => {
+    const { name, value } = ev.target as HTMLInputElement;
+    updateCurrDayProperty(name, value);
+  };
+
+  const handleOnSaveDayButtonClick = () => {
+    if (dayParam === 'create') {
+      addCurrDay();
+    } else {
+      updateDay(dayParam);
+    }
+    router.goBack();
+  };
+
   return (
     <Page.Container>
       <Page.Heading title='Day details' showBackButton={true}>
-        <IonButton
-          onClick={() =>
-            handleOnSaveDayClick({
-              name: dayName,
-              exercise: exercises,
-              id: 'y89yuh899h98h',
-            })
-          }
-          style={{ width: '90px' }}
-          fill='outline'
-        >
+        <IonButton onClick={handleOnSaveDayButtonClick} fill='outline'>
           Save
         </IonButton>
       </Page.Heading>
       <DayDetailsFormSection
-        dayNameVal={dayName}
-        dayNameSetter={handleOnDayNameChange}
+        nameVal={name}
+        onDayDetailsFormChange={handleOnDayDetailsFormChange}
       />
-      <DayDetailsExercisesSections
-        isModalOpen={isModalOpen}
-        onModalCloseClick={handleOnCloseModalButtonClick}
-        onAddExerciseButtonClick={handleOnAddExerciseButtonClick}
-        onSelectedExercisesChange={handleOnExercisesChange}
-      />
+      <DayDetailsExercisesSections />
     </Page.Container>
   );
 };

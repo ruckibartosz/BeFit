@@ -5,17 +5,15 @@ import { informationCircle } from 'ionicons/icons';
 import { Page } from '@components/Page';
 
 type WorkoutFormSectionProps = {
-  generalNameVal: string;
-  generalNoteVal: string;
-  generalNameSetter: (ev: Event) => void;
-  generalNoteSetter: (ev: Event) => void;
+  generalName: string;
+  generalNote: string;
+  onFormChange: (ev: Event) => void;
 };
 
 const WorkoutFormSection: React.FC<WorkoutFormSectionProps> = ({
-  generalNameVal,
-  generalNoteVal,
-  generalNoteSetter,
-  generalNameSetter,
+  generalName,
+  generalNote,
+  onFormChange,
 }) => {
   return (
     <Page.Section
@@ -26,15 +24,17 @@ const WorkoutFormSection: React.FC<WorkoutFormSectionProps> = ({
       <IonList>
         <IonItem>
           <IonInput
-            onIonChange={generalNameSetter}
-            value={generalNameVal}
+            onIonChange={onFormChange}
+            name='name'
+            value={generalName}
             placeholder='Enter name'
           />
         </IonItem>
         <IonItem>
           <IonInput
-            onIonChange={generalNoteSetter}
-            value={generalNoteVal}
+            onIonChange={onFormChange}
+            name='note'
+            value={generalNote}
             placeholder='Enter note (optional)'
           />
         </IonItem>

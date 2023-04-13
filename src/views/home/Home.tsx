@@ -6,12 +6,11 @@ import { Page } from '@components/Page';
 import { sampleData } from '@constants/workoutSample';
 import WorkoutWeekly from '@components/WorkoutWeekly';
 import WeeklyGoal from '@components/WeeklyGoal';
-import FabButton from '@components/FabButton';
+import FabButton from '@components/FabHomeButton';
 import WorkoutListSection from '@components/UserWorkoutListSection';
 
 const Home: React.FC = () => {
   const router = useIonRouter();
-
   return (
     <Page.Container>
       <FabButton />
