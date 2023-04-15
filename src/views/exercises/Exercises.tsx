@@ -3,7 +3,7 @@ import { IonItem, IonList, IonSelect, IonSelectOption } from '@ionic/react';
 import { barbellOutline } from 'ionicons/icons';
 
 import { Page } from '@components/Page';
-import ExerciseCard from '../../components/ExerciseCard';
+import ExerciseCard from '../../components/Cards/ExerciseCard';
 
 const Exercises: React.FC = () => {
   return (

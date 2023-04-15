@@ -20,7 +20,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 
 import { Page } from '@components/Page';
-import StatisticCard from '@components/StatisticCard';
+import StatisticCard from '@components/Cards/StatisticCard';
 import Flex from '@components/Flex';
 
 import style from './Statistics.module.scss';

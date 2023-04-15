@@ -1,4 +1,4 @@
-import { WorkoutType } from '../types/workoutData.type';
+import { Workout } from '../types/workoutData.type';
 
 export const sampleData = [
   {
@@ -13,7 +13,7 @@ export const sampleData = [
   },
 ];
 
-export const workoutSample: WorkoutType = {
+export const workoutSample: Workout = {
   id: '2',
   name: 'sample-but-new-new-new',
   note: '',

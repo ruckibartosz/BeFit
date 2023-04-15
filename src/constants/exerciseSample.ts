@@ -1,6 +1,6 @@
-import { ExerciseType } from '../types/exercise.type';
+import { Exercise } from '../types/exercise.type';
 
-export const exerciseSampleArr: ExerciseType[] = [
+export const exerciseSampleArr: Exercise[] = [
   {
     bodyPart: 'shoulder',
     equipment: 'barbell',
@@ -19,7 +19,7 @@ export const exerciseSampleArr: ExerciseType[] = [
   },
 ];
 
-export const exerciseUserSampleArr: ExerciseType[] = [
+export const exerciseUserSampleArr: Exercise[] = [
   {
     bodyPart: 'shoulder',
     equipment: 'barbell',

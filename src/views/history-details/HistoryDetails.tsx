@@ -12,7 +12,7 @@ import {
   accessibility,
 } from 'ionicons/icons';
 import { Page } from '@components/Page';
-import StatisticCard from '@components/StatisticCard';
+import StatisticCard from '@components/Cards/StatisticCard';
 
 import style from './HistoryDetails.module.scss';
 

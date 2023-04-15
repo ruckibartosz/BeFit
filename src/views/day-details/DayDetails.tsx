@@ -3,10 +3,10 @@ import { IonButton, useIonRouter } from '@ionic/react';
 import { useParams } from 'react-router';
 
 import { Page } from '@components/Page';
-import { useWorkoutState } from '@hooks/useWorkoutState';
-import { useWorkoutAction } from '@hooks/useWorkoutAction';
-import DayDetailsFormSection from '@components/DayDetailsSections/DayDetailsFormSection';
-import DayDetailsExercisesSections from '@components/DayDetailsSections/DayDetailsExercisesSection';
+import { useWorkoutState } from '@hooks/states/useWorkoutState';
+import { useWorkoutAction } from '@hooks/actions/useWorkoutAction';
+import DayDetailsFormSection from './form-section';
+import DayDetailsExercisesSections from './exercises-section';
 
 const DayDetails: React.FC = () => {
   const { currDay } = useWorkoutState();

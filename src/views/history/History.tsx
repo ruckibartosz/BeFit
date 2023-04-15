@@ -3,7 +3,7 @@ import { IonDatetime } from '@ionic/react';
 
 import { Page } from '@components/Page';
 import Flex from '@components/Flex';
-import HistoryCard from '@components/HistoryCard';
+import HistoryCard from '@components/Cards/HistoryCard';
 
 const History: React.FC = () => {
   return (

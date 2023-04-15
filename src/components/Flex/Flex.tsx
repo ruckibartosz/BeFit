@@ -38,16 +38,19 @@ type FlexProps = {
     | 'left'
     | 'right'
     | 'unsafe';
+  onClick?: () => void;
 };
 
 const Flex: React.FC<FlexProps> = ({
   children,
   style,
   className,
+  onClick,
   ...props
 }) => {
   return (
     <div
+      onClick={onClick}
       className={className}
       style={{
         display: 'flex',

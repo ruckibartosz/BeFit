@@ -1,24 +1,24 @@
-import { ExerciseType } from './exercise.type';
-import { DayType, WorkoutType } from './workoutData.type';
+import { Exercise } from './exercise.type';
+import { Day, Workout } from './workoutData.type';
 
 export type WorkoutFetchWorkoutsActionType = {
   type: 'FETCH_WORKOUTS';
-  payload: { workouts: Array<WorkoutType>; initialized: boolean };
+  payload: { workouts: Workout[]; initialized: boolean };
 };
 
 export type WorkoutModWorkoutsActionType = {
   type: 'MOD_WORKOUTS';
-  payload: { workouts: Array<WorkoutType> };
+  payload: { workouts: Workout[] };
 };
 
 export type WorkoutModCurrentWorkoutPropertyActionType = {
   type: 'MOD_CURR_WORKOUT_PROPERTY';
-  payload: { property: string; value: string | Array<DayType> };
+  payload: { property: string; value: string | Day[] };
 };
 
 export type WorkoutModCurrentDayPropertyActionType = {
   type: 'MOD_CURR_DAY_PROPERTY';
-  payload: { property: string; value: string | Array<ExerciseType> };
+  payload: { property: string; value: string | Exercise[] };
 };
 
 export type WorkoutResetCurrentWorkoutActionType = {
@@ -31,15 +31,15 @@ export type WorkoutResetCurrentDayActionType = {
 
 export type WorkoutLoadCurrentDayActionType = {
   type: 'LOAD_CURR_DAY';
-  payload: { currDay: DayType };
+  payload: { currDay: Day };
 };
 
 export type WorkoutLoadCurrentWorkoutActionType = {
   type: 'LOAD_CURR_WORKOUT';
-  payload: { currWorkout: WorkoutType };
+  payload: { currWorkout: Workout };
 };
 
-export type WorkoutActionType =
+export type WorkoutActions =
   | WorkoutModCurrentDayPropertyActionType
   | WorkoutFetchWorkoutsActionType
   | WorkoutModWorkoutsActionType

@@ -12,18 +12,22 @@ type WeeklyGoalProps = {
 };
 
 const WeeklyGoal: React.FC<WeeklyGoalProps> = ({ goal, current }) => {
-  return (
-    <Flex
-      className={style.weeklyGoal}
-      gap='4px'
-      alignItems='center'
-      justifyContent='flex-end'
-    >
-      <IonIcon className={style.weeklyGoalIcon} icon={flag} />
-      <span className={style.weeklyGoalBolded}>{`${current} / ${goal}`}</span>
-      <span>days completed</span>
-    </Flex>
-  );
+  if (goal) {
+    return (
+      <Flex
+        className={style.weeklyGoal}
+        gap='4px'
+        alignItems='center'
+        justifyContent='flex-end'
+      >
+        <IonIcon className={style.weeklyGoalIcon} icon={flag} />
+        <span className={style.weeklyGoalBolded}>{`${current} / ${goal}`}</span>
+        <span>days completed</span>
+      </Flex>
+    );
+  }
+
+  return null;
 };
 
 export default WeeklyGoal;

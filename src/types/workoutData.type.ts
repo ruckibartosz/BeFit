@@ -1,14 +1,14 @@
-import { ExerciseType } from './exercise.type';
+import { Exercise } from './exercise.type';
 
-export type WorkoutType = {
+export type Workout = {
   id: string;
   name: string;
   note: string;
-  days: Array<DayType>;
+  days: Day[];
 };
 
-export type DayType = {
+export type Day = {
   id: string;
   name: string;
-  exercise: Array<ExerciseType>;
+  exercise: Exercise[];
 };

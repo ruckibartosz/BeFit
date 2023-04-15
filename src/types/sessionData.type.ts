@@ -1,22 +1,22 @@
 import moment from 'moment';
-import { ExerciseType } from './exercise.type';
+import { Exercise } from './exercise.type';
 
-export type SessionType = {
+export type Session = {
   workoutName: string;
   date: moment.Moment | string;
   startTimestamp: moment.Moment | string;
   endTimestamp: moment.Moment | string;
-  exercises: Array<ExerciseType & RepeatingType>;
+  exercises: Array<Exercise & Repeating>;
   totalFinishedSets: number;
   totalWeight: number;
   note: string;
 };
 
-export type RepeatingType = {
-  repeating: Array<SetType>;
+export type Repeating = {
+  repeating: Set[];
 };
 
-export type SetType = {
+export type Set = {
   isDone: boolean;
   weight: number;
   reps: number;

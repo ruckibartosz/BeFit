@@ -5,8 +5,8 @@ export type SettingsState = {
   language: 'eng' | 'pl';
   weightUnit: 'kg' | 'lbs';
   distanceUnit: 'km' | 'mi';
-  weeklyGoal: undefined | number;
-  sets: undefined | number;
+  weeklyGoal: number;
+  sets: number;
 };
 
 type SettingsFetchAction = {
@@ -16,7 +16,7 @@ type SettingsFetchAction = {
 
 type SettingsChangeValueAction = {
   type: 'CHANGE_SETTING_VALUE';
-  payload: { property: string; value: any };
+  payload: { property: string; value: unknown };
 };
 
 export type SettingsAction = SettingsFetchAction | SettingsChangeValueAction;

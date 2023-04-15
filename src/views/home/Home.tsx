@@ -4,13 +4,18 @@ import { homeOutline, settingsOutline } from 'ionicons/icons';
 
 import { Page } from '@components/Page';
 import { sampleData } from '@constants/workoutSample';
+import { useSettingsState } from '@hooks/states/useSettingsState';
+import { useWorkoutState } from '@hooks/states/useWorkoutState';
 import WorkoutWeekly from '@components/WorkoutWeekly';
 import WeeklyGoal from '@components/WeeklyGoal';
-import FabButton from '@components/FabHomeButton';
-import WorkoutListSection from '@components/UserWorkoutListSection';
+import FabButton from '@components/Buttons/FabHomeButton';
+import HomeWorkoutsListSection from './workouts-section';
 
 const Home: React.FC = () => {
   const router = useIonRouter();
+  const { weeklyGoal } = useSettingsState();
+  const { workouts } = useWorkoutState();
+
   return (
     <Page.Container>
       <FabButton />
@@ -21,8 +26,8 @@ const Home: React.FC = () => {
         />
       </Page.Heading>
       <WorkoutWeekly data={sampleData} />
-      <WeeklyGoal goal={5} current={1} />
-      <WorkoutListSection />
+      <WeeklyGoal goal={weeklyGoal} current={1} />
+      <HomeWorkoutsListSection workouts={workouts} />
     </Page.Container>
   );
 };

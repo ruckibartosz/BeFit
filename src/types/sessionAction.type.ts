@@ -1,21 +1,21 @@
-import { SessionType } from './sessionData.type';
+import { Session } from './sessionData.type';
 
-export type SessionLoadSessionsActionType = {
+export type SessionLoadSessionsAction = {
   type: 'LOAD_SESSIONS';
-  payload: { sessions: Array<SessionType> };
+  payload: { sessions: Session[] };
 };
 
-export type SessionLoadCurrentSessionActionType = {
+export type SessionLoadCurrentSessionAction = {
   type: 'LOAD_CURR_SESSION';
-  payload: { session: SessionType };
+  payload: { session: Session };
 };
 
-export type SessionAddSessionActionType = {
+export type SessionAddSessionAction = {
   type: 'ADD_SESSION';
-  payload: { session: SessionType };
+  payload: { session: Session };
 };
 
-export type SessionActionType =
-  | SessionAddSessionActionType
-  | SessionLoadCurrentSessionActionType
-  | SessionLoadSessionsActionType;
+export type SessionActions =
+  | SessionAddSessionAction
+  | SessionLoadCurrentSessionAction
+  | SessionLoadSessionsAction;

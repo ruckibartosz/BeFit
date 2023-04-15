@@ -5,10 +5,10 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
 /* Providers */
-import { WorkoutStateProvider } from '@context/WorkoutStateContext';
-import { WorkoutActionProvider } from '@context/WorkoutActionContext';
-import { SettingsStateProvider } from '@context/SettingsStateContext';
-import { SettingsActionProvider } from '@context/SettingsActionContext';
+import { WorkoutStateProvider } from '@context/workout/WorkoutStateContext';
+import { WorkoutActionProvider } from '@context/workout/WorkoutActionContext';
+import { SettingsStateProvider } from '@context/settings/SettingsStateContext';
+import { SettingsActionProvider } from '@context/settings/SettingsActionContext';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
